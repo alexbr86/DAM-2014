@@ -1,0 +1,58 @@
+﻿<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Información sobre el producto</title>
+</head>
+<body>
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <h1>Información sobre el producto</h1>
+        <fieldset>
+            <legend>Datos basicos</legend>
+            <label for="nombre">Nombre</label>
+            <br/>
+            <input type="text"  size="50" name="nombre" value=""/>
+            <br/>
+            <label for="pass">Contraseña</label>
+            <br/>
+            <input type="password" name="pass" value="hola12"/>
+            <br/>
+            <label for="descripcion">Descripción</label>
+            <br/>
+            <textarea name="descripcion" cols="50" rows="4"></textarea>
+            <br/>
+            <label for="foto">Foto</label>
+            <input type="file" name="foto">
+            <br/>
+            <input type="checkbox" name="contador" value="1"/>
+            <label for="contador">Añadir contador de visitas</label>
+            <br/>
+        </fieldset>
+        <fieldset>
+            <legend>Datos económicos</legend>
+            <label for="precio">Precio</label>
+            <input type="text" name="precio" value="" size="5">
+            <label for="precio">€</label>
+            &nbsp; &nbsp;
+            <label for="porcentajeimp">Impuestos</label>
+            <select id="porcentajeimp" name="porcentajeimp">
+                <option value="4%">4%</option>
+                <option value="8%">8%</option>
+                <option value="16%">16%</option>
+            </select>
+            <br/>
+            <span>Promoción</span>
+            <br/>
+            <input type="radio" name="promocion" id="ninguno" value="ninguno" checked/>
+            <label for="ninguno">Ninguno</label>
+            <br/>
+            <input type="radio" name="promocion" id="transporte" value="transporte"/>
+            <label for="transporte">Transporte gratuito</label>
+            <br/>
+            <input type="radio" name="promocion" id="descuento" value="descuento"/>
+            <label for="descuento">Descuento 5%</label>
+            <br/>
+        </fieldset>
+
+        <input type="submit" name="enviar" value="Enviar"></form>
+</body>
+</html>
