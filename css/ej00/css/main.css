@@ -1,5 +1,4 @@
 ﻿* {
-    border: 1px solid #000; 
     box-sizing: border-box;
 }
 html, body {
@@ -22,12 +21,27 @@ h1, .h1{
     font-weight: normal;
     line-height: 1.08em;/* 30.24pt/28pt */
 }
+h1, h2, h3, h4, h5, h6{
+    margin-top: 0;
+}
 table{
     width: 100%;
 }
 ul {
     margin: 0;
 
+}
+img{
+    max-width: 100%;
+}
+
+.marco {
+    background-color: #FFF;
+    padding: 10px;
+    box-shadow: 0 0 5px #CDCDCD;
+}
+.marco p {
+    margin: 0;
 }
 
 .center{
@@ -38,17 +52,55 @@ ul {
     list-style: none;
     padding-left: 0;
 }
+.list p{
+    margin: 0;
+}
+.list li{
+    padding: 20px 0;
+}
+.list li:first-child{
+    padding-top: 0;
+}
+/*Botones*/
+.btn{
+    display: inline-block;
+    width: 100px;
+    padding: 3px;
+    margin: auto 5px;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px #CDCDCD;
+    background-image: linear-gradient(to bottom, #999, #CCC);
+}
+.btn-big{
+    padding: 10px inherit;
+}
+
+.btn-buy{
+    background-image:linear-gradient(to bottom, #F74040 80%, #D33535) ;
+}
+
+.btn-go{
+    background-image:linear-gradient(to bottom, #23be2e 80%, #258E2D) ;
+}
 
 /*Colores*/
 .txt-red{
     color: #F00;
 }
 
+.txt-blue{
+    color: #7cbcf3;
+}
 .bg-blanco{
     background-color: #FFF;
 }
 
-.list-blue{
+.list-blue li{
+    background: transparent url(../imagenes/blue-bullet.gif) no-repeat 0 20;
     padding-left: 20px;
 }
 /*Cabecera*/
@@ -58,9 +110,24 @@ ul {
     padding: 0;
 
 }
+.breadcrum li{
+    display: inline-block;
+}
+
+.breadcrum li:after {
+    content: "/";
+}
+
+.breadcrum li.actual:after{
+    content: "";
+}
 
 .breadcrum .actual, .menu .actual {
     color: #f00;
+}
+
+* .bg-gris:first-child .fcenter{
+    padding-bottom: 0;
 }
 
 .fcenter{
@@ -68,8 +135,38 @@ ul {
     margin: 0 auto;
     padding: 40px 0;
 }
+.fcenter:before, .fcenter:after, .clearfix:before, .clearfix:after{
+    content: "";
+    display: table;
+}
+.fcenter:after, .clearfix:after{
+    clear: both;
+}
+
  .fleft { float: left;}
  .col-25 { width: 25%;}
  .col-50 { width: 50%;}
  .col-75 { width: 75%;}
  
+ .italic{
+    font-style: italic;
+ }
+ .price{
+    font-size: 1.5em;
+    font-weight: bold;
+ }
+.descripcion{
+    padding-left: 20px;
+}
+.footer li{
+    display: inline-block;
+}
+
+ /*TODOS*/
+/*
+
+        Elementos en linea de breadcrum
+        Botones
+        Balines
+        Tabla
+        El pie en linea

@@ -1,0 +1,27 @@
+﻿ul{
+    list-style: none;
+    border: 1px solid #000;
+    width:100px;
+    padding: 0;
+}
+
+
+
+li {
+    padding: 0;
+    border: 1px solid #000;
+    text-align: center;
+    position: relative;
+}
+
+li ul{
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: none;
+    background-color: ;
+}
+
+li:hover > ul{
+    display: block;
+}
