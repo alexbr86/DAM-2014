@@ -1,0 +1,33 @@
+﻿body{
+    font-size: 12pt;
+}
+
+li:first-child, li:last-child {
+    color: #000099;
+
+}
+
+li:nth-child(2){
+    font-size: 1.5em;
+}
+
+li:nth-child(3){
+    font-size: 2em;
+
+}
+
+li:nth-last-child(2){
+    font-size: 2.5em;
+}
+
+li:last-child{
+    font-size: 3em;
+}
+
+li::first-letter{
+    color: #035256;
+}
+
+li:not(:last-child){
+    text-transform: uppercase;
+}
