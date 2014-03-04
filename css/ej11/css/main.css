@@ -1,0 +1,52 @@
+﻿body {
+    margin: 0px;
+}
+#container{
+    background: #666 url(../imagenes/ej03_tree.jpg) no-repeat -60px 0;
+    width: 420px;
+    height: 480px;
+    position: relative;
+}
+.snowflake {
+    color: #fff;
+    font-size: 2em;
+    position: absolute;
+}
+.snowflake.f1 {
+    left: 40px;
+    -webkit-animation: fall 12s ease-in infinite, desapear 12s infinite linear;
+}
+.snowflake.f2 {
+    font-size: 1.8em;
+    left: 120px;
+    -webkit-animation: fall 9s ease-in infinite, desapear 9s infinite linear;
+}
+.snowflake.f3 {
+    left: 200px;
+    -webkit-animation: fall 11s ease-in infinite, desapear 11s  infinite linear;
+}
+.snowflake.f4 {
+    font-size: 1.5em;
+    left: 280px;
+    -webkit-animation: fall 11s ease-in infinite, desapear 10s infinite linear;
+}
+
+@-webkit-keyframes fall {
+    from {
+        -webkit-transform: translatey(-30px);
+    }
+ 
+    to {
+        -webkit-transform: translatey(480px);
+    }
+}
+
+@-webkit-keyframes desapear {
+    from {
+        opacity: 1;
+    }
+ 
+    to {
+        opacity: 0;
+    }
+}
