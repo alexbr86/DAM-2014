@@ -103,6 +103,10 @@ img{
     background: transparent url(../imagenes/blue-bullet.gif) no-repeat 0 20;
     padding-left: 20px;
 }
+
+.read-more{
+    display: none;
+}
 /*Cabecera*/
 .breadcrum {
     text-transform: uppercase;
@@ -131,9 +135,10 @@ img{
 }
 
 .fcenter{
-    width: 990px;
+    width: 90%;
+    max-width: 990px;
     margin: 0 auto;
-    padding: 40px 0;
+    padding: 4.04040404% 0;/*40px/990px*/
 }
 .fcenter:before, .fcenter:after, .clearfix:before, .clearfix:after{
     content: "";
@@ -161,6 +166,12 @@ img{
 .footer li{
     display: inline-block;
 }
+.overflowx{
+    overflow-x: scroll;
+}
+.hidden{
+    display: none;
+}
 
  /*TODOS*/
 /*
@@ -170,3 +181,76 @@ img{
         Balines
         Tabla
         El pie en linea
+*/
+/*mediaquerys*/
+@media screen and (max-width: 768px){
+    .fcenter{
+        padding: 2.02020202% 0; 
+    }
+    .col-25.marco {
+        width: 40%;
+    }
+    .col-75.descripcion{
+        width: 60%;
+    }
+    .descripcion p{
+        height: 250px;
+        overflow: hidden;
+    }
+    .read-more{
+        display: block;
+    }
+    h1, .h1{
+        font-size: 1.6em;
+        text-transform: none;
+    }
+    .fcenter .price{
+        float: none;
+        display: block;
+        margin-top: 5px;
+        text-align: center;
+    }
+    .marco .btn-big{
+        float: none;
+        display: block;
+        width: 100%;
+    }
+    .list li h4{
+        float: none;
+        width: 100%;
+        margin-bottom: 0;
+    }
+    .list li p{
+        float: none;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .fcenter{
+        width: 100%;
+        padding: 3%;
+    }
+    .breadcrum{
+        float: left;
+    }
+    .navartoggle{
+        display: block;
+        float: right;
+    }
+    *[class*="col-"] {
+        float: none;
+        width: 100%;
+        clear: both;
+    }
+    .col-25.marco{
+        width: 100%;
+    }
+    .col-75.descripcion{
+        width: 100%;
+    }
+    .marco img{
+        display: block;
+        margin: auto;
+    }
+}
