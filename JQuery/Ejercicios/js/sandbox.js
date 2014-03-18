@@ -23,7 +23,7 @@ $(function(){
 
     var img = $('img[alt]');
 
-    var $filas = $('tbody tr:odd').css('background-color', 'gray');
+   // var $filas = $('tbody tr:odd').css('background-color', 'gray');
 
 
     //ejercicio 3.8.2
