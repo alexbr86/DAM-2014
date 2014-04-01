@@ -1,0 +1,9 @@
+﻿input{
+    display: block;
+    width: 250px;
+}
+.disabled{
+    background-color: #B3B3B3;
+    border-color: red;
+    opacity: 0.5;
+}

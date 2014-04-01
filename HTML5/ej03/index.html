@@ -3,26 +3,39 @@
 <head>
     <meta charset="utf-8"/>
     <title>Ejercicio 3 de HTML5</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="../libs/modernizr.custom.10914.js"></script>
+
 </head>
 <body>
 <form>
-    email<input type="email"/>
-   password<input type="password"/>
-    url<input type="url"/>
-    date<input type="date"/>
-    time<input type="time"/>
-    datetime<input type="datetime"/>
-    month<input type="month"/>
-    week<input type="week"/>
-    number<input type="number"/>
-    range"<input type="range"/>
-    tel<input type="tel"/>
-    seach<input type="seach"/>
-    color<input type="color"/>
-   lista<input type="text" list="mylist"/>
-    <datalist></datalist>
+    email<input type="email" required="true" autofocus="true"/>
+  <!-- password<input type="password" required="true" pattern="^[0-9]([0-9]|[a-zA-Z]){6,}[A-Z]$"/>-->
+    url<input type="url"  placeholder="mete una direccion http, payaso!"/>
+    date<input type="date" />
+    time<input type="time" />
+    datetime<input type="datetime" />
+    month<input type="month" />
+    week<input type="week" />
+    number<input type="number" required="true" min="1" max="10"/>
+    range<input type="range" />
+    tel<input type="tel" />
+    seach<input type="search" />
+    color<input type="color" />
+   lista<input type="text" list="mylist" required="true"/>
+    <datalist id="mylist">
+        <option label="Guipuzcoa" value="Guipuzcoa"/>
+        <option label="Vizcaya" value="Vizcaya"/>
+        <option label="Alava" value="Alava"/>
+    </datalist>
+    inserta un fichero<input type="file" multiple="multiple">
+    en progreso<progress max="15" value="0"></progress>
+    <input type="submit" value="enviar"/>
 
 </form>
-    
+    <script src="../libs/jquery-1.11.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/modernizr.js"></script>
+
 </body>
 </html>
