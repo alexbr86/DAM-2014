@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio 5 de HTML5</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<div>
+<div id="video">
+    <video id="vid" autoplay width="640">
+        <source src = "video/simpson.mp4"  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+        <source src = "video/simpson.webm" type='video/webm; codecs="vp8, vorbis"'>
+    </video>
+</div>
+<div id="slaider">
+<progress id="progreso" value="0" max="100"></progress>
+</div>
+<div id="controls">
+    <input type="button" class="btn" id="play" value="PLAY" />
+    <input type="button" class="btn" id="pause" value="PAUSE" />
+    <input type="button" class="btn" id="stop" value="STOP" />
+    <input type="button" class="btn" id="fwd" value="FWD" />
+    <input type="button" class="btn" id="rwd" value="RWD" />
+    <input type="button" class="btn" id="tobegin" value="TO BEGIN" />
+    <input type="button" class="btn" id="toend" value="TO END" />
+    <input type="button" class="btn" id="full" value="FULL SCREEN" />
+    <input type="range" id="vol" min="0" max="100" step="1" value="0"/>
+</div>
+</div>
+
+<script src="../libs/jquery-1.11.0.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
