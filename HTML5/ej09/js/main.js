@@ -80,7 +80,7 @@
         };
 
 
-        var request = store.put(data);
+        var request = store.add(data);
 
         request.onsuccess = function(e) {
             console.log("Sucessful add: "+e);
