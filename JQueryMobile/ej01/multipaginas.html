@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../libs/jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.css" />
+    <script src="../libs/jquery-1.11.0.min.js"></script>
+    <script src="../libs/jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js"></script>
+</head>
+<body>
+    <div data-role="page" id="pagina1">
+        <div data-role="header">
+            <h1>Pagina1</h1>
+        </div>
+        <div role="main" class="ui-content">
+
+            <a href="#popupBasic" data-rel="popup" >Chiste</a>
+
+            <div data-role="popup" id="popupBasic">
+                <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right"></a>
+                <p>
+                    - María, me compré condones de sabores, apaga la luz y adivina el sabor.
+                    <br/>
+                    - Mmm, sardina con queso.
+                    <br/>
+                    - No... ¡Espera a que me lo ponga!
+                </p>
+            </div>
+        </div>
+
+
+    <div data-role="footer" data-position="fixed">
+        <a href="#pagina2" data-role="button" data-transition="slide">siguiente</a>
+    </div>
+</div>
+
+<div data-role="page" id="pagina2">
+    <div data-role="header">
+        <h1>Pagina2</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <a href="imagen.html" data-rel="dialog"  data-rel="popup">Chiste</a>
+
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <a href="#pagina3" data-role="button" data-transition="slide">siguiente</a>
+        <a  data-role="button" data-rel="back" data-direction="reverse" data-transition="slide">atras</a>
+    </div>
+</div>
+<div data-role="page" id="pagina3">
+    <div data-role="header">
+        <h1>Pagina3</h1>
+    </div>
+    <div role="main" class="ui-content">
+
+        <a href="#mypanel">Open / Close panel</a>
+        <div data-role="panel" id="mypanel" data-position="right">
+          <p>una cosa</p>
+        <p>otra cosa</p>
+        </div>
+        <div class="ui-grid-solo">
+            <div class="ui-block-a"><a href="index.html" class="ui-btn ui-shadow ui-corner-all">Menú</a></div>
+        </div>
+
+    </div>
+    <div data-role="footer" data-position="fixed">
+    <div class="ui-grid-solo">
+        <div class="ui-block-a"> <a  class="ui-shadow ui-btn ui-coner-all"data-role="button" data-rel="back" data-direction="reverse" data-transition="slide">atras</a></div>
+    </div>
+
+       
+    </div>
+</div>
+</body>
+</html>
