@@ -9,10 +9,10 @@
 </head>
 <body>
     <div data-role="page" id="pagina1">
-        <div data-role="header">
+        <div id="header" data-role="header">
             <h1>Pagina1</h1>
         </div>
-        <div role="main" class="ui-content">
+        <div role="main" class="ui-content" id="main">
 
             <a href="#popupBasic" data-rel="popup" >Chiste</a>
 
@@ -26,50 +26,107 @@
                     - No... ¡Espera a que me lo ponga!
                 </p>
             </div>
+
+            <label for="slider-flip-m">¿Te ha gustado el chiste?:</label>
+            <select name="slider-flip-m" id="slider-flip-m" data-role="slider" data-mini="true" data-theme="b" data-track-theme="b">
+                <option value="off">No</option>
+                <option value="on" selected="">Yes</option>
+            </select>
+            <label for="slider-fill-mini">Valoración:</label>
+            <input type="range" name="slider-fill-mini" id="slider-fill-mini" value="50" min="0" max="100" data-mini="true" data-highlight="true" data-theme="b" data-track-theme="b"></div>
+
+        <div data-role="footer" data-position="fixed">
+        
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#pagina2" data-transition="slide">siguiente</a></li>
+                </ul>
+            </div>
+        
         </div>
-
-
-    <div data-role="footer" data-position="fixed">
-        <a href="#pagina2" data-role="button" data-transition="slide">siguiente</a>
     </div>
-</div>
 
-<div data-role="page" id="pagina2">
-    <div data-role="header">
-        <h1>Pagina2</h1>
-    </div>
-    <div role="main" class="ui-content">
-        <a href="imagen.html" data-rel="dialog"  data-rel="popup">Chiste</a>
-
-    </div>
-    <div data-role="footer" data-position="fixed">
-        <a href="#pagina3" data-role="button" data-transition="slide">siguiente</a>
-        <a  data-role="button" data-rel="back" data-direction="reverse" data-transition="slide">atras</a>
-    </div>
-</div>
-<div data-role="page" id="pagina3">
-    <div data-role="header">
-        <h1>Pagina3</h1>
-    </div>
-    <div role="main" class="ui-content">
-
-        <a href="#mypanel">Open / Close panel</a>
-        <div data-role="panel" id="mypanel" data-position="right">
-          <p>una cosa</p>
-        <p>otra cosa</p>
+    <div data-role="page" id="pagina2">
+        <div data-role="header">
+            <h1>Pagina2</h1>
         </div>
-        <div class="ui-grid-solo">
-            <div class="ui-block-a"><a href="index.html" class="ui-btn ui-shadow ui-corner-all">Menú</a></div>
+        <div role="main" class="ui-content">
+            <a href="imagen.html" data-rel="dialog"  data-rel="popup">Chiste</a>
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <legend>¿Que te ha causado el chiste?:</legend>
+                <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6a" value="off" >
+                <label for="radio-choice-h-6a">Ganas de irme a casa a llorar</label>
+                <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6b" value="on" checked="checked">
+                <label for="radio-choice-h-6b">Me he reido mucho</label>
+                <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6c" value="other">
+                <label for="radio-choice-h-6c">Prefiero no contestar</label>
+            </fieldset>
+            <input type="text" data-clear-btn="true" name="text-3" id="text-3" value="" placeholder="Sugerencias"></div>
+        <div data-role="footer" data-position="fixed">
+            
+                
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#pagina3" data-role="button" data-transition="slide">siguiente</a></li>
+                        <li><a  class="ui-shadow ui-btn ui-coner-all"data-role="button" data-rel="back" data-direction="reverse" data-transition="slide">atras</a></li>
+                    </ul>
+                </div>
+
+
+        
         </div>
+    </div>
+    <div data-role="page" id="pagina3">
+    <div data-role="panel" id="mypanel" data-position="right" >
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true">
+            <li>
+                <a href="#pagina1">Chiste1</a>
+            </li>
+            <li>
+                <a href="#pagina2">Chiste2</a>
+            </li>
+            <li>
+                <a href="index.html">Menú</a>
+            </li>
+            <li>
+                <a href="imagen.html">Imagen de homer (viciosillo....)</a>
+            </li>
+            <li>
+                <a href="#">Configuración</a>
+            </li>
+            <li>
+                <a href="#">Ayuda</a>
+            </li>
+        </ul>
+        <a href="#pagina3" data-rel="close">Close panel</a>
+    </div>
+        <div data-role="header">
+            <h1>Pagina3</h1>
+        </div>
+        <div role="main" class="ui-content">
 
-    </div>
-    <div data-role="footer" data-position="fixed">
-    <div class="ui-grid-solo">
-        <div class="ui-block-a"> <a  class="ui-shadow ui-btn ui-coner-all"data-role="button" data-rel="back" data-direction="reverse" data-transition="slide">atras</a></div>
-    </div>
+            <a href="#mypanel">Open</a>
 
-       
+            <div class="ui-grid-solo">
+                <div class="ui-block-a">
+                    <a href="index.html" class="ui-btn ui-shadow ui-corner-all">Menú</a>
+                </div>
+            </div>
+
+        </div>
+        <div data-role="footer" data-position="fixed">
+        
+
+                <div data-role="navbar">
+                    <ul>
+                        <li><a  class="ui-shadow ui-btn ui-coner-all"data-role="button" data-rel="back" data-direction="reverse" data-transition="slide">atras</a></li>
+                    </ul>
+                </div>
+
+                
+
+        </div>
     </div>
-</div>
+    <script src="js/main.js"></script>
 </body>
 </html>
