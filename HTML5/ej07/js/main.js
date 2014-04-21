@@ -1,37 +1,46 @@
-﻿$(function(){
+$(document).ready(function() {
     'use strict';
-    var $editor = $('#editor');
-    if($editor[0].value.length===0){
-       // var valuese = sessionStorage.getItem('$editor');
-        var valuelo = localStorage.getItem('$editor');
-        if(valuelo){
-            //$editor[0].value=valuese;
-            $editor[0].value=valuelo;
-        }
+    // Calcular posición
+    var position;
+    var $divpos = $('#divpos');
+    if(navigator.geolocation){
+        navigator.geolocation.watchPosition(function (position){
+            console.log(position);
+            for (var i in position) {
+                if (i === 'coords'){
+                    for (var j in position[i]) {
+                        $divpos.append(j + ' : ' + position[i][j] + '</br>');
+                    }
+                }
+                
+            }
+
+            showMap(position);
+        });
     }
-    var save = function (e) {
-        if (event.newValue === null) { 
-           // sessionStorage.removeItem('$editor');
-           // sessionStorage.clear();
-            localStorage.removeItem('$editor');
-            localStorage.clear();
-         } else {
-           // sessionStorage.setItem('$editor', this.value);
-            localStorage.setItem('$editor', this.value);
-            console.log(this.value);
-         
-         }
-        };    
-        var handleStorage = function (e) {
-        if (event.newValue!==$editor[0].value) { 
-            $editor[0].value = localStorage.getItem('$editor');
-            console.log(this.value);
-         
-         }
+
+    function showMap(position) {
+        var mapcanvas = document.createElement('div');
+        mapcanvas.id = 'mapcanvas';
+        mapcanvas.style.height = '400px';
+        mapcanvas.style.width = '560px';
+
+        document.querySelector('article').appendChild(mapcanvas);
+
+        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var myOptions = {
+            zoom: 15,
+            center: latlng,
+            mapTypeControl: false,
+            navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         };
+        var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
 
-
-    $(document).on('keyup', '#editor', save);
-    window.addEventListener('storage', handleStorage, false);
-
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: "¡Usted está aquí!"
+        });
+    }
 });

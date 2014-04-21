@@ -1,126 +1,121 @@
 ﻿$(function(){
     'use strict';
-    window.indexedDB = window.indexedDB || window.mozIndexedDB ||
-                    window.webkitIndexedDB || window.msIndexedDB;
+var db;
+var createdefaults = function(){
+db = openDatabase('tweetdb', '1.0', 'All my tweets', 2 * 1024 * 1024);
+db.transaction(function (tx) {
+    tx.executeSql('DROP TABLE tweets', []);
+    tx.executeSql('DROP TABLE users', []);
+    tx.executeSql('CREATE TABLE IF NOT EXISTS tweets(id, user, date, text)', [], getTweets);
+    tx.executeSql('CREATE TABLE IF NOT EXISTS users(id, name, image)', [], getUsers);
+});
+};
 
-    window.IDBTransaction = window.IDBTransaction || 
-                    window.webkitIDBTransaction || window.msIDBTransaction;
-    window.IDBKeyRange = window.IDBKeyRange || 
-                    window.webkitIDBKeyRange || window.msIDBKeyRange;
+var getTweets = function () {
+            $.ajax({
+                    url : 'json/tweets.json',
+                    type : 'GET',
+                    dataType : 'json',
+                    cache : false,  
+                    success : function(data){
+                        $.each(data, function(index) {
+                            var tweet = data[index];
+                            db.transaction(function (tx) { //CADA TWEET EN UNA TRANSACCION → Procesa todas
+                            var time = (new Date(Date.parse(tweet.created_at))).getTime();
+                            tx.executeSql('INSERT INTO tweets (id, user, date, text) VALUES (?, ?, ?, ?)',
+                                [tweet.id, tweet.user, tweet.date, tweet.text]);
+                            });
+                        });
+                    },
+                    error : function(jqXHR, textStatus, errorThrown){
+                        console.log(errorThrown);
+                    }
+                });
 
-    var db = null;
-
-    var open = function () {
-        var version = 6;
-        var request = indexedDB.open("todo-list", version);
-
-        request.onupgradeneeded = function(e) {
-            db = e.target.result;
-
-            if(db.objectStoreNames.contains("todo-list")) db.deleteObjectStore("todo-list");
-
-            var store = db.createObjectStore("todo-list", 
-                        { keyPath: "timeStamp" });
-            store.createIndex('completed', 'completed', { unique: false });
-         };
-
-        request.onerror = onerror;
-
-        request.onsuccess = function(e) {
-            db = e.target.result;
-            console.log("DB opened");
-         };
-    };
-
-    var add = function (todotext) {    
-        var transaction = db.transaction(["todo-list"], "readwrite");
-        var store = transaction.objectStore("todo-list");
-
-        var data = {
-            "text": todotext,
-            "timeStamp": new Date().getTime(),
-            "completed": "false"
-        };
-
-        var request = store.put(data);
-
-        request.onsuccess = function(e) {
-            console.log("Sucessful add: "+e);
-        };
-
-        request.onerror = function(e) {
-            console.log("Error adding: ", e);
-        };
-    };
-
-    var remove = function(key){
-        var transaction = db.transaction(["todo-list"], "readwrite");
-        var store = transaction.objectStore("todo-list");
-        var id = parseInt(key);
-        var request = store.delete(id);
-        request.onsuccess = function(e) {
-            console.log("Sucessful remove: "+e);
-        };
-
-        request.onerror = function(e) {
-            console.log("Error adding: ", e);
-        };
-
-    };
-
-    var update = function (id, text, checked) {    
-        var transaction = db.transaction(["todo-list"], "readwrite");
-        var store = transaction.objectStore("todo-list");
-        var data;
-    
-        data = {
-            "text": text,
-            "timeStamp": parseInt(id),
-            "completed": checked
-        };
+};
+var getUsers = function () {
 
 
-        var request = store.add(data);
+            $.ajax({
+                    url : 'json/users.json',
+                    type : 'GET',
+                    dataType : 'json',
+                    cache : false,  
+                    success : function(data){
+                        $.each(data, function(index) {
+                            var user = data[index];
+                            db.transaction(function (tx) { //CADA USER EN UNA TRANSACCION → Procesa todas
+                            tx.executeSql('INSERT INTO users (id, name, image) VALUES (?, ?, ?)',
+                                [user.id, user.name, user.image]);
+                            });
+                        });
+                    },
+                    error : function(jqXHR, textStatus, errorThrown){
+                        console.log(errorThrown);
+                    }
+                });
 
-        request.onsuccess = function(e) {
-            console.log("Sucessful add: "+e);
-        };
+};
+var getUser = function (user) {
 
-        request.onerror = function(e) {
-            console.log("Error adding: ", e);
-        };
-    };
+        if(user.rows.length === 0){
+            $.ajax({
+                    url : '../servidor/autocompletaMunicipios.php',
+                    type : 'GET',
+                    data: {user : user},
+                    dataType : 'json',
+                    cache : false,  
+                    success : function(data){
+                        db.transaction(function (tx) { //CADA USER EN UNA TRANSACCION → Procesa todas
+                        tx.executeSql('INSERT INTO users (id, name, image) VALUES (?, ?, ?)',
+                        [user.id, user.name, user.image]);
+                        });
+                    },
+                    error : function(jqXHR, textStatus, errorThrown){
+                        console.log(errorThrown);
+                    }
+                });
+        }
 
-    var addTask = function (e) {
-        var $todo = $('#todo');
-        add($todo[0].value);
-        $todo.value = "";
-    };    
-    
-    var removeTask = function (e) {
-        var $key = $('#id');
-        remove($key[0].value);
-        $key.value = "";
-    };
+};
 
-    var updateTask = function(e) {
-        var $key = $('#id');
-        var $todo = $('#todo');
-        var $cheked = $('#completed');
-        update($key[0].value, $todo[0].value, $cheked[0].checked);
+var addTweet = function(tweet){
+    db.transaction(function (tx) { //CADA TWEET EN UNA TRANSACCION → Procesa todas
+    var time = (new Date(Date.parse(tweet.created_at))).getTime();
+    tx.executeSql('INSERT INTO tweets (id, user, date, text) VALUES (?, ?, ?, ?)',
+    [tweet.id, tweet.user, time / 1000, tweet.text]);
+    tx.executeSql('SELECT user FROM tweets WHERE tweets.user = tweet.user', [], getUser);
 
-    };
+    });
 
 
-function init() {
-    open();
-}
 
-$(document).on('click', '#btn-add', addTask);
-$(document).on('click', '#btn-rmv', removeTask);
-$(document).on('click', '#btn-updt', updateTask);
-//$(document).on('click', '#btn-get', getTask);
-//$(document).on('click', '#completed', completed);
-window.addEventListener("DOMContentLoaded", init, false);
 
+};
+var removeTweet = function(tweetid){
+    db.transaction(function (tx) { 
+    tx.executeSql('SELECT * FROM tweets WHERE id = tweetid', [], console.log(results.rows.item));
+    tx.executeSql('DELETE * FROM tweets WHERE id = tweetid', console.log('your tweet is deleted'));
+
+    });
+};
+var updateTweet = function(tweet){
+    db.transaction(function (tx) { 
+    tx.executeSql('UPDATE tweets SET id = tweet.id, user = tweet.user, date = tweet.date, text = tweet.text WHERE id = tweet.id', [], console.log('your tweet is updated'));
+
+    });
+};
+var getTweet = function(time){
+    db.transaction(function (tx) { 
+    //var time = new Date().getTime();
+    tx.executeSql('SELECT * FROM tweets WHERE date = time', [], 
+        function(tx, results){console.log(results.rows.item.text);});
+
+    });
+};
+
+createdefaults();
+var time = new Date();
+time = 1396627125267;
+getTweet(time);
 });

@@ -1,27 +1,34 @@
-<!DOCTYPE html>
-<html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Geolocalización</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio 5 de HTML5</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<div>
+<div id="video">
+    <video id="vid" autoplay width="640">
+        <source src = "video/simpson.mp4"  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+        <source src = "video/simpson.webm" type='video/webm; codecs="vp8, vorbis"'>
+    </video>
+</div>
+<div id="slaider">
+<progress id="progreso" value="0" max="100"></progress>
+</div>
+<div id="controls">
+    <input type="button" class="btn" id="play" value="PLAY" />
+    <input type="button" class="btn" id="pause" value="PAUSE" />
+    <input type="button" class="btn" id="stop" value="STOP" />
+    <input type="button" class="btn" id="fwd" value="FWD" />
+    <input type="button" class="btn" id="rwd" value="RWD" />
+    <input type="button" class="btn" id="tobegin" value="TO BEGIN" />
+    <input type="button" class="btn" id="toend" value="TO END" />
+    <input type="button" class="btn" id="full" value="FULL SCREEN" />
+    <input type="range" id="vol" min="0" max="100" step="1" value="0"/>
+</div>
+</div>
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    </head>
-    <body>
-        <h1>Geolocalización</h1>
-        <article>
-          <p>Tu localización: <span id="status">comprobando...</span></p>
-        </article>
-        <div id="divpos"></div>
-
-        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+<script src="../libs/jquery-1.11.0.min.js"></script>
+<script src="js/main.js"></script>
+</body>
 </html>

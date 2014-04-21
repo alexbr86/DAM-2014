@@ -1,0 +1,22 @@
+﻿[{
+    "id" : "1",
+    "name" : "Jon",
+    "image" : "image1.jpg"
+    },{
+    "id" : "2",
+    "name" : "Ekain",
+    "image" : "image2.jpg"
+    },{
+    "id" : "3",
+    "name" : "Xabi",
+    "image" : "image3.jpg"
+    },{
+    "id" : "4",
+    "name" : "Mikel",
+    "image" : "image4.jpg"
+    },{
+    "id" : "5",
+    "name" : "Pedro",
+    "image" : "image5.jpg"
+    }
+]

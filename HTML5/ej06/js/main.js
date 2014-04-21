@@ -1,46 +1,52 @@
-$(document).ready(function() {
+﻿$(function(){
     'use strict';
-    // Calcular posición
-    var position;
-    var $divpos = $('#divpos');
-    if(navigator.geolocation){
-        navigator.geolocation.watchPosition(function (position){
-            console.log(position);
-            for (var i in position) {
-                if (i === 'coords'){
-                    for (var j in position[i]) {
-                        $divpos.append(j + ' : ' + position[i][j] + '</br>');
-                    }
-                }
-                
-            }
+    var $progreso = $('#progreso')[0];
+    var video = document.getElementById('vid');
+    video.volume=0;
+    
+    var play = function(e){
+        video.play();
 
-            showMap(position);
-        });
-    }
+    };
+    var pause = function(e){
+        video.pause();
+    };
+    var stop = function(e){
+        video.pause();
+        video.currentTime=0;
+    };
+    var fwd = function(e){
+        video.currentTime-=10;
+    };
+    var rwd = function(e){
+        video.currentTime+=10;
+    };
+    var tobegin = function(e){
+        video.currentTime=0;
+    };
+    var toend = function(e){
+        video.currentTime=video.duration;
+    };    
+    var full = function(e){
+        video.webkitRequestFullScreen();
+    };    
+    var vol = function(e){
+        video.volume=this.value/100;
+    };    
+    var progreso = function(e){
+        var percent = Math.floor((100/video.duration)*video.currentTime);
+        $progreso.value=percent;
+       
+    };
 
-    function showMap(position) {
-        var mapcanvas = document.createElement('div');
-        mapcanvas.id = 'mapcanvas';
-        mapcanvas.style.height = '400px';
-        mapcanvas.style.width = '560px';
-
-        document.querySelector('article').appendChild(mapcanvas);
-
-        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        var myOptions = {
-            zoom: 15,
-            center: latlng,
-            mapTypeControl: false,
-            navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
-
-        var marker = new google.maps.Marker({
-            position: latlng,
-            map: map,
-            title: "¡Usted está aquí!"
-        });
-    }
+     $(document).on('click', '#play', play);
+     $(document).on('click', '#pause', pause);
+     $(document).on('click', '#stop', stop);
+     $(document).on('click', '#fwd', fwd);
+     $(document).on('click', '#rwd', rwd);
+     $(document).on('click', '#tobegin', tobegin);
+     $(document).on('click', '#toend', toend);
+     $(document).on('click', '#full', full);
+     $(document).on('change', '#vol', vol);
+     video.ontimeupdate = progreso;
 });
