@@ -54,11 +54,24 @@
         });
     };
 
+    var updateTweet = function(tweet, success, error) {
+        getTweet(tweet.id, function(t){
+            if(t) {
+                var req = db.put({name: storagename, keyPath: 'id'}, tweet);
+                req.done(success);
+                req.fail(error);
+            } else {
+                error('There is no tweet with id ' + tweet.id);
+            }
+        }, error);
+    };
+
     return{
         setTweet: setTweet,
         getTweet: getTweet,
         getAllTweets: getAllTweets,
         rmvTweet: rmvTweet,
-        rmvAllTweets: rmvAllTweets
+        rmvAllTweets: rmvAllTweets,
+        updateTweet: updateTweet
     };
 });
