@@ -24,10 +24,10 @@
             });
 
         });
-        describe('Data setTweet', function () {
+        describe('Data addTweet', function () {
             it('should run here few assertions', function (done) {
                 var tweet = {id : '242613977966850048', text : 'Hello, this is a tweet'};
-                DB.setTweet(tweet, function(key){
+                DB.addTweet(tweet, function(key){
                     console.log(key);
                     done();
                 }, function(err){

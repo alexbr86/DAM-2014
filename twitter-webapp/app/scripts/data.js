@@ -4,8 +4,17 @@
     var storagename = 'tweets';
     var db = new ydn.db.Storage(dbname);
 
-    var setTweet = function(tweet, success, error){
+    var addTweet = function(tweet, success, error){
         var req = db.put({name: storagename, keyPath: 'id'}, tweet);
+        req.done(function(key){
+            success(key);
+        });
+        req.fail(function(e){
+            error(e);
+        });
+    };
+    var addTweets = function(tweets, success, error){
+        var req = db.put({name: storagename, keyPath: 'id'}, tweets);
         req.done(function(key){
             success(key);
         });
@@ -67,7 +76,8 @@
     };
 
     return{
-        setTweet: setTweet,
+        addTweet: addTweet,
+        addTweets: addTweets,
         getTweet: getTweet,
         getAllTweets: getAllTweets,
         rmvTweet: rmvTweet,

@@ -1,4 +1,5 @@
 ﻿define('service', ['jquery'], function($){
+    'use strict';
     
     var getTweets = function(config, success, error){
         $.ajax({
