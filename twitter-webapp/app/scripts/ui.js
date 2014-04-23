@@ -1,8 +1,12 @@
-﻿define('ui', ['jquery'], function($){
+﻿define('ui', ['jquery', 'handlebars'], function($, Handlebars){
     'use strict';
 
     var showTweetsList = function(tweets){
-        var $list = $('#twitter-list');
+        var $listtpl = $('#list-tpl').html();
+        var template = Handlebars.compile($listtpl);
+
+        var html = template({tweets : tweets});
+        $('#twitter-list').html(html);
     };
 
 

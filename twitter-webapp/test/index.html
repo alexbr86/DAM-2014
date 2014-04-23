@@ -30,6 +30,15 @@
     <script src="spec/test.js"></script>
     <script src="spec/testservice.js"></script>
     <script src="spec/testcontroller.js"></script>
+    <script src="spec/testui.js"></script>
+
+    <script id="list-tpl" type="text/x-handlebars-template">
+        {{#each tweets}}
+            <li>
+                {{id}} - {{text}}
+            </li>
+        {{/each}}
+    </script>
 
     <script>mocha.run()</script>
 </body>

@@ -1,4 +1,4 @@
-﻿define('controller', ['data', 'service'], function(DB, srv){
+﻿define('controller', ['data', 'service', 'ui'], function(DB, srv, ui){
     'use strict';
     var processTweets = function(data, success, error){
         var tweets = [];
@@ -21,7 +21,7 @@
             success(tweets);
         }
     };
-    var error = function(){
+    var error = function(error){
         console.log(error);
     };
 
@@ -29,6 +29,8 @@
         srv.getTweets({}, function(data){
             processTweets(data, function(tweets){
                 DB.addTweets(tweets, success, error);
+                ui.showTweetsList(tweets);
+
             }, error);
             
 
