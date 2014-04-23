@@ -1,6 +1,6 @@
 ﻿define('controller', ['data', 'service'], function(DB, srv){
     'use strict';
-    var processTweets = function(data){
+    var processTweets = function(data, success, error){
         var tweets = [];
 
         if (data && data.statuses && data.statuses.length > 0){
@@ -18,13 +18,23 @@
                 };
                 tweets.push(newtweet);
             }
+            success(tweets);
         }
-        console.log(tweets);
     };
-    var error = function(){};
+    var error = function(){
+        console.log(error);
+    };
 
-    var getTweetsFromTwitter = function() {
-        srv.getTweets({}, processTweets, error);
+    var getTweetsFromTwitter = function(success, error) {
+        srv.getTweets({}, function(data){
+            processTweets(data, function(tweets){
+                DB.addTweets(tweets, success, error);
+            }, error);
+            
+
+        }, error);
+        
+
     };
 
     return{

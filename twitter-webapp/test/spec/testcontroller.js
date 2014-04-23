@@ -29,23 +29,25 @@
         describe('controller getTweetsFromTwitter', function () {
 
             beforeEach(function(done){
-                //sinon.spy(DB, 'addTweets');
                 sinon.spy(SV, 'getTweets');
+                sinon.spy(DB, 'addTweets');
                 done();
 
             });
 
             afterEach(function(done){
-               // DB.addTweets.restore();
                 SV.getTweets.restore();
+                DB.addTweets.restore();
                 done();
-
             });
             it('get all tweets form twitter and save to db', function (done) {
-                CTRL.getTweetsFromTwitter();
-               // assert.isTrue(DB.addTweets.calledOnce, 'addTweets not called');
-                assert.isTrue(SV.getTweet.calledOnce, 'getTweets not called');
-                done();
+                CTRL.getTweetsFromTwitter(function(){
+                    assert.isTrue(DB.addTweets.calledOnce, 'addTweets not called');
+                    done();
+                }, function(){console.log('error calling getTweetsFromTwitter');});
+                assert.isTrue(SV.getTweets.calledOnce, 'getTweets not called');
+                
+                
             });
 
         });

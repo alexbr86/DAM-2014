@@ -15,8 +15,8 @@
     };
     var addTweets = function(tweets, success, error){
         var req = db.put({name: storagename, keyPath: 'id'}, tweets);
-        req.done(function(key){
-            success(key);
+        req.done(function(){
+            success();
         });
         req.fail(function(e){
             error(e);

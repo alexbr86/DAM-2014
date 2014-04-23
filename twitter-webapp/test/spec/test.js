@@ -58,7 +58,7 @@
                 DB.getAllTweets(function(records){
                     console.log(records);
                     results = records;
-                    assert.strictEqual(results.length, 1);
+                    assert.strictEqual(results.length, 100);
                     done();
                 }, function(err){
                     console.log(err);
