@@ -7,6 +7,7 @@
     var addTweet = function(tweet, success, error){
         var req = db.put({name: storagename, keyPath: 'id'}, tweet);
         req.done(function(key){
+            throwEvent();
             success(key);
         });
         req.fail(function(e){
@@ -16,6 +17,7 @@
     var addTweets = function(tweets, success, error){
         var req = db.put({name: storagename, keyPath: 'id'}, tweets);
         req.done(function(){
+            throwEvent();
             success();
         });
         req.fail(function(e){
@@ -73,6 +75,11 @@
                 error('There is no tweet with id ' + tweet.id);
             }
         }, error);
+    };
+
+    var throwEvent = function(){
+        var event = new Event('datachange');
+        document.dispatchEvent(event);
     };
 
     return{

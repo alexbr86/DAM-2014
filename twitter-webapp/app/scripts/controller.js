@@ -22,24 +22,29 @@
         }
     };
     var error = function(error){
-        console.log(error);
+        throw error;
     };
 
     var getTweetsFromTwitter = function(success, error) {
         srv.getTweets({}, function(data){
             processTweets(data, function(tweets){
                 DB.addTweets(tweets, success, error);
-                ui.showTweetsList(tweets);
-
             }, error);
-            
-
         }, error);
         
 
     };
 
+    var showLatestTweets = function(){
+        console.log('showLatestTweets called');
+        DB.getAllTweets(function(tweets){
+            console.log(tweets);
+            ui.showTweetsList(tweets);
+        }, error);
+    };
+
     return{
-        getTweetsFromTwitter: getTweetsFromTwitter
+        getTweetsFromTwitter: getTweetsFromTwitter,
+        showLatestTweets: showLatestTweets
     };
 });

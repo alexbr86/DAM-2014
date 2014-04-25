@@ -1,4 +1,4 @@
-﻿define('service', ['jquery'], function($){
+﻿define('service', ['quo'], function($){
     'use strict';
     
     var getTweets = function(config, success, error){
